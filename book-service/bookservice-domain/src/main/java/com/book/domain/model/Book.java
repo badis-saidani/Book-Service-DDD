@@ -18,7 +18,7 @@ public class Book {
 
     public Book(String title, String author, String genre, double price) {
         this();
-        this.uid = author+title;
+        this.uid = (author+title).replaceAll("\\s", "");
         this.title = title;
         this.author = author;
         this.genre = genre;

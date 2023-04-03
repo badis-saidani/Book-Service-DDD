@@ -64,8 +64,15 @@ public class BookRepositoryImpl implements BookRepository{
         }catch (Exception e){
             System.err.println("The file doesn't exist! We're writing a new one!");
         }
-        books.forEach(b->b.setUid((b.getAuthor()+b.getTitle()).replaceAll("\\s", "")));
-        bookList.addAll(books);
+
+        books.forEach(b-> {
+            b.setUid((b.getAuthor() + b.getTitle()).replaceAll("\\s", ""));
+            if(findBook(b.getUid()).isPresent())
+                System.err.println(b.getUid()+" is a duplicate. It is not going to be added!");
+            else
+                bookList.add(b);
+
+        });
         updateFile();
         return (List<String>) bookList.stream().map(b-> b.getUid()).collect(Collectors.toList());
     }
@@ -80,12 +87,17 @@ public class BookRepositoryImpl implements BookRepository{
     public  Book getBook(String id){
         if(bookList.isEmpty())
             refreshBookList();
-        Optional<Book> result = bookList
-                .stream().parallel()
-                .filter(b -> b.getUid().equalsIgnoreCase(id)).findAny();
+        Optional<Book> result = findBook(id);
         if(result.isPresent())
             return result.get();
         else return null;
+    }
+
+    private Optional<Book> findBook(String id) {
+        Optional<Book> result = bookList
+                .stream().parallel()
+                .filter(b -> b.getUid().equalsIgnoreCase(id)).findAny();
+        return result;
     }
 
 }

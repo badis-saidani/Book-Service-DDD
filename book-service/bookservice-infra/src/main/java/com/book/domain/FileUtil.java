@@ -32,7 +32,7 @@ public class FileUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         return bookList;

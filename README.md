@@ -7,7 +7,7 @@ POST /books -- create 1 or N books, should respond with a list of generated ids
 
 Body example:
 
-[
+         [
 
          {
          
@@ -17,9 +17,7 @@ Body example:
             
             "genre": "Fiction",
             
-            "price": "44.95",
-            
-            "review": ["wow"]
+            "price": "44.95"
             
          },
          
@@ -31,9 +29,7 @@ Body example:
             
             "genre": "Poem",
             
-            "price": "24.95",
-            
-            "review": ["amazing."]
+            "price": "24.95"
             
          }
       ]

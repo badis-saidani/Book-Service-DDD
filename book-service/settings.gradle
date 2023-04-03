@@ -1,0 +1,5 @@
+rootProject.name = 'book-service'
+include 'bookservice-api'
+include 'bookservice-domain'
+include 'bookservice-infra'
+
